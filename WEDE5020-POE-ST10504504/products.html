@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <!-- Character set and responsive viewport so the layout scales on phones and tablets -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menu and prices for Desai's Bakery, Grassy Park: fresh bread from R18, cakes, milk tart, koesisters and catering platters.">
+    <meta name="author" content="Waylon Pillay (ST10504504)">
+    <title>Menu | Desai&#8217;s Bakery, Grassy Park</title>
+    <!-- Favicon and the single external stylesheet shared by every page -->
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip link lets keyboard users jump straight past the navigation -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ===== SITE HEADER: logo + main navigation (identical on all five pages) ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <img src="images/logo.svg" alt="" width="48" height="48">
+                <span class="brand-text">Desai&#8217;s Bakery<small>Jadeed&#8217;s Bread</small></span>
+            </a>
+
+            <!-- Checkbox + label create a CSS-only hamburger menu on small screens (no JavaScript needed) -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Show or hide the menu">
+            <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html" class="active" aria-current="page">Menu</a></li>
+                <li><a href="enquiry.html">Order &amp; Enquire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-banner">
+            <div class="container">
+                <h1>Our menu</h1>
+                <p class="lead">Prices are in rand and include VAT. Everyday items are available in store. Custom cakes are quoted individually.</p>
+                <!-- In-page links jump to each menu category -->
+                <nav class="jump-links" aria-label="Menu categories">
+                    <a href="#breads">Breads</a>
+                    <a href="#cakes">Cakes</a>
+                    <a href="#tarts">Tarts &amp; treats</a>
+                    <a href="#catering">Catering</a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- MENU CATEGORY: Breads -->
+        <section class="section" id="breads">
+            <div class="container menu-block">
+                <picture class="menu-image">
+                    <source type="image/webp" srcset="images/breads-480.webp 480w, images/breads-960.webp 960w" sizes="(min-width: 64em) 35vw, 100vw">
+                    <img src="images/breads-960.jpg" srcset="images/breads-480.jpg 480w, images/breads-960.jpg 960w" sizes="(min-width: 64em) 35vw, 100vw"
+                         alt="A domed white loaf, a round seed loaf and a baguette on a wooden counter" width="960" height="720" loading="lazy">
+                </picture>
+                <div class="menu-content">
+                    <h2>Breads</h2>
+                    <p>Baked from 05:00 every day. Sliced on request at no extra cost.</p>
+                <table class="menu-table">
+                    <caption>Bread prices</caption>
+                    <thead>
+                        <tr><th scope="col">Item</th><th scope="col">Description</th><th scope="col">Price</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">White loaf</th>
+                            <td>Soft sandwich loaf, 700 g</td>
+                            <td class="price">R19</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Brown loaf</th>
+                            <td>Classic brown bread, 700 g</td>
+                            <td class="price">R18</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seed loaf</th>
+                            <td>Sunflower, linseed and pumpkin seeds</td>
+                            <td class="price">R42</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Jadeed&#8217;s sourdough</th>
+                            <td>48-hour ferment, crisp crust</td>
+                            <td class="price">R65</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Bread rolls (6)</th>
+                            <td>White or brown</td>
+                            <td class="price">R24</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Rotis (6)</th>
+                            <td>Soft layered rotis, made on Fridays</td>
+                            <td class="price">R40</td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <p class="allergen"><strong>Allergens:</strong> wheat (gluten). Seed loaf contains sesame. Baked in a kitchen that handles nuts, milk and eggs.</p>
+                </div>
+            </div>
+        </section>
+        <!-- MENU CATEGORY: Cakes -->
+        <section class="section section-alt" id="cakes">
+            <div class="container menu-block">
+                <picture class="menu-image">
+                    <source type="image/webp" srcset="images/cakes-480.webp 480w, images/cakes-960.webp 960w" sizes="(min-width: 64em) 35vw, 100vw">
+                    <img src="images/cakes-960.jpg" srcset="images/cakes-480.jpg 480w, images/cakes-960.jpg 960w" sizes="(min-width: 64em) 35vw, 100vw"
+                         alt="Two-tier chocolate cake with pink icing and candles, flanked by cupcakes" width="960" height="720" loading="lazy">
+                </picture>
+                <div class="menu-content">
+                    <h2>Cakes</h2>
+                    <p>Available by the slice or whole (20 cm, serves 10 to 12). Order whole cakes a day ahead.</p>
+                <table class="menu-table">
+                    <caption>Cake prices</caption>
+                    <thead>
+                        <tr><th scope="col">Item</th><th scope="col">Description</th><th scope="col">Price</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Chocolate cake</th>
+                            <td>Rich chocolate sponge with ganache. Slice / whole</td>
+                            <td class="price">R35 / R320</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Red velvet</th>
+                            <td>Cream cheese icing. Slice / whole</td>
+                            <td class="price">R38 / R380</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Carrot cake</th>
+                            <td>Walnuts and cream cheese icing. Slice / whole</td>
+                            <td class="price">R36 / R340</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Cupcakes (12)</th>
+                            <td>Vanilla or chocolate, buttercream swirl</td>
+                            <td class="price">R180</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Custom celebration cake</th>
+                            <td>Designed to your theme. Quoted per order</td>
+                            <td class="price">From R550</td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <p class="allergen"><strong>Allergens:</strong> wheat, eggs, milk. Carrot cake contains walnuts. Eggless sponges are available on request.</p>
+                </div>
+            </div>
+        </section>
+        <!-- MENU CATEGORY: Tarts &amp; treats -->
+        <section class="section" id="tarts">
+            <div class="container menu-block">
+                <picture class="menu-image">
+                    <source type="image/webp" srcset="images/tarts-480.webp 480w, images/tarts-960.webp 960w" sizes="(min-width: 64em) 35vw, 100vw">
+                    <img src="images/tarts-960.jpg" srcset="images/tarts-480.jpg 480w, images/tarts-960.jpg 960w" sizes="(min-width: 64em) 35vw, 100vw"
+                         alt="A whole milk tart dusted with cinnamon surrounded by Cape Malay koesisters" width="960" height="720" loading="lazy">
+                </picture>
+                <div class="menu-content">
+                    <h2>Tarts &amp; treats</h2>
+                    <p>Cape favourites baked from family recipes. Koesisters are available on Sundays and at the Saturday market.</p>
+                <table class="menu-table">
+                    <caption>Tart and treat prices</caption>
+                    <thead>
+                        <tr><th scope="col">Item</th><th scope="col">Description</th><th scope="col">Price</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Milk tart</th>
+                            <td>Traditional custard with cinnamon. Slice / whole</td>
+                            <td class="price">R22 / R180</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Koesisters (6)</th>
+                            <td>Spiced, syrup-glazed and rolled in coconut</td>
+                            <td class="price">R42</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Hertzoggies (6)</th>
+                            <td>Apricot jam and coconut tartlets</td>
+                            <td class="price">R60</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Vetkoek</th>
+                            <td>Plain, or filled with mince (+R15)</td>
+                            <td class="price">R10</td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <p class="allergen"><strong>Allergens:</strong> wheat, eggs, milk. Koesisters and hertzoggies contain coconut.</p>
+                </div>
+            </div>
+        </section>
+        <!-- MENU CATEGORY: Catering platters -->
+        <section class="section section-alt" id="catering">
+            <div class="container menu-block">
+                <picture class="menu-image">
+                    <source type="image/webp" srcset="images/catering-platter-480.webp 480w, images/catering-platter-960.webp 960w" sizes="(min-width: 64em) 35vw, 100vw">
+                    <img src="images/catering-platter-960.jpg" srcset="images/catering-platter-480.jpg 480w, images/catering-platter-960.jpg 960w" sizes="(min-width: 64em) 35vw, 100vw"
+                         alt="Large round platter holding a dozen cupcakes with pink, cream and green icing" width="960" height="720" loading="lazy">
+                </picture>
+                <div class="menu-content">
+                    <h2>Catering platters</h2>
+                    <p>For offices, school events, funerals and family functions. Please order at least 48 hours ahead.</p>
+                <table class="menu-table">
+                    <caption>Catering platter prices</caption>
+                    <thead>
+                        <tr><th scope="col">Item</th><th scope="col">Description</th><th scope="col">Price</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Cupcake platter</th>
+                            <td>24 mini cupcakes, mixed flavours</td>
+                            <td class="price">R360</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Sweet treats platter</th>
+                            <td>Koesisters, hertzoggies and milk tart squares (serves 15)</td>
+                            <td class="price">R450</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Savoury platter</th>
+                            <td>Mini vetkoek, samoosas and sausage rolls (serves 15)</td>
+                            <td class="price">R520</td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <p class="allergen"><strong>Allergens:</strong> platters contain wheat, eggs and milk. Tell us about allergies when ordering.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOM ORDERS CALL TO ACTION -->
+        <section class="cta-banner">
+            <div class="container cta-inner">
+                <h2>Need something special?</h2>
+                <p>Custom cakes are quoted individually based on size, flavour and design.</p>
+                <a class="btn btn-light" href="enquiry.html">Request a quote</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== SITE FOOTER: contact summary, hours and quick links ===== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <section>
+                <h2>Visit us</h2>
+                <address>
+                    42 Victoria Road<br>
+                    Grassy Park, Cape Town, 7941<br>
+                    <a href="tel:+27217051234">021&nbsp;705&nbsp;1234</a><br>
+                    <a href="mailto:orders@desaisbakery.co.za">orders@desaisbakery.co.za</a>
+                </address>
+            </section>
+            <section>
+                <h2>Trading hours</h2>
+                <ul class="plain-list">
+                    <li>Mon &#8211; Fri: 06:30 &#8211; 18:00</li>
+                    <li>Saturday: 07:00 &#8211; 14:00</li>
+                    <li>Sunday: 07:00 &#8211; 12:00</li>
+                    <li>Market stall: Sat 08:00 &#8211; 13:00</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Quick links</h2>
+                <ul class="plain-list">
+                    <li><a href="products.html">Our menu</a></li>
+                    <li><a href="enquiry.html">Order a custom cake</a></li>
+                    <li><a href="contact.html">Find both locations</a></li>
+                </ul>
+            </section>
+        </div>
+        <p class="footer-note container">
+            &copy; 2026 Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
+        </p>
+    </footer>
+</body>
+</html>
