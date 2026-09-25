@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <!-- Character set and responsive viewport so the layout scales on phones and tablets -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Family-run bakery in Grassy Park, Cape Town. Fresh bread daily, celebration cakes, milk tart and koesisters. Order custom cakes online.">
+    <meta name="author" content="Waylon Pillay (ST10504504)">
+    <title>Home | Desai&#8217;s Bakery, Grassy Park</title>
+    <!-- Favicon and the single external stylesheet shared by every page -->
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip link lets keyboard users jump straight past the navigation -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ===== SITE HEADER: logo + main navigation (identical on all five pages) ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <img src="images/logo.svg" alt="" width="48" height="48">
+                <span class="brand-text">Desai&#8217;s Bakery<small>Jadeed&#8217;s Bread</small></span>
+            </a>
+
+            <!-- Checkbox + label create a CSS-only hamburger menu on small screens (no JavaScript needed) -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Show or hide the menu">
+            <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Menu</a></li>
+                <li><a href="enquiry.html">Order &amp; Enquire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- HERO: large image, tagline and the main call to action -->
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <p class="eyebrow">Grassy Park, Cape Town</p>
+                    <h1>Fresh baked, every day.</h1>
+                    <p class="lead">Family recipes, honest prices and bread that&#8217;s still warm when you get it home. Celebration cakes made to order.</p>
+                    <div class="button-row">
+                        <a class="btn btn-primary" href="enquiry.html">Order now</a>
+                        <a class="btn btn-secondary" href="products.html">See the menu</a>
+                    </div>
+                </div>
+                <picture class="hero-image">
+                    <source type="image/webp" srcset="images/hero-bread-display-480.webp 480w, images/hero-bread-display-960.webp 960w, images/hero-bread-display-1600.webp 1600w" sizes="(min-width: 64em) 55vw, 100vw">
+                    <img src="images/hero-bread-display-1600.jpg" srcset="images/hero-bread-display-480.jpg 480w, images/hero-bread-display-960.jpg 960w, images/hero-bread-display-1600.jpg 1600w" sizes="(min-width: 64em) 55vw, 100vw"
+                         alt="Shelf of freshly baked loaves above a counter with a birthday cake, a baguette, a milk tart and koesisters" width="1600" height="900" loading="eager">
+                </picture>
+            </div>
+        </section>
+
+        <!-- FEATURED CATEGORIES: three cards linking into the menu page -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">What we bake</h2>
+                <p class="section-intro">Everything is baked on site in Grassy Park each morning. Pick a category to see prices.</p>
+                <div class="card-grid">
+                    <article class="card">
+                        <picture>
+                    <source type="image/webp" srcset="images/breads-480.webp 480w, images/breads-960.webp 960w" sizes="(min-width: 48em) 33vw, 100vw">
+                    <img src="images/breads-960.jpg" srcset="images/breads-480.jpg 480w, images/breads-960.jpg 960w" sizes="(min-width: 48em) 33vw, 100vw"
+                         alt="A domed white loaf, a round seed loaf and a baguette on a wooden counter" width="960" height="720" loading="lazy">
+                </picture>
+                        <div class="card-body">
+                            <h3>Breads</h3>
+                            <p>White, brown and seed loaves, sourdough and rolls, baked from 05:00 daily.</p>
+                            <a class="text-link" href="products.html#breads">View breads</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <picture>
+                    <source type="image/webp" srcset="images/cakes-480.webp 480w, images/cakes-960.webp 960w" sizes="(min-width: 48em) 33vw, 100vw">
+                    <img src="images/cakes-960.jpg" srcset="images/cakes-480.jpg 480w, images/cakes-960.jpg 960w" sizes="(min-width: 48em) 33vw, 100vw"
+                         alt="Two-tier chocolate cake with pink icing and candles, flanked by cupcakes" width="960" height="720" loading="lazy">
+                </picture>
+                        <div class="card-body">
+                            <h3>Cakes</h3>
+                            <p>Slices, whole cakes and custom celebration cakes for birthdays, weddings and Eid.</p>
+                            <a class="text-link" href="products.html#cakes">View cakes</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <picture>
+                    <source type="image/webp" srcset="images/tarts-480.webp 480w, images/tarts-960.webp 960w" sizes="(min-width: 48em) 33vw, 100vw">
+                    <img src="images/tarts-960.jpg" srcset="images/tarts-480.jpg 480w, images/tarts-960.jpg 960w" sizes="(min-width: 48em) 33vw, 100vw"
+                         alt="A whole milk tart dusted with cinnamon surrounded by Cape Malay koesisters" width="960" height="720" loading="lazy">
+                </picture>
+                        <div class="card-body">
+                            <h3>Tarts &amp; treats</h3>
+                            <p>Milk tart, hertzoggies and Sunday-morning koesisters, just like Granny made.</p>
+                            <a class="text-link" href="products.html#tarts">View tarts &amp; treats</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT TEASER: short story with a link to the full About page -->
+        <section class="section section-alt">
+            <div class="container split">
+                <picture>
+                    <source type="image/webp" srcset="images/storefront-480.webp 480w, images/storefront-960.webp 960w" sizes="(min-width: 48em) 50vw, 100vw">
+                    <img src="images/storefront-960.jpg" srcset="images/storefront-480.jpg 480w, images/storefront-960.jpg 960w" sizes="(min-width: 48em) 50vw, 100vw"
+                         alt="Front of Desai's Bakery with a terracotta awning and loaves in the window" width="960" height="720" loading="lazy">
+                </picture>
+                <div>
+                    <h2>From a home kitchen to Victoria Road</h2>
+                    <p>What started as Farzana Desai baking for neighbours in 2014 became a small shop in 2018. Her son Jadeed now runs the bread ovens, which is where &#8220;Jadeed&#8217;s Bread&#8221; comes from.</p>
+                    <a class="btn btn-secondary" href="about.html">Read our story</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY US: three short selling points -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why Grassy Park shops with us</h2>
+                <ul class="feature-list">
+                    <li><h3>Baked this morning</h3><p>Nothing on the shelf is older than today. Leftovers go to the community feeding scheme.</p></li>
+                    <li><h3>Fair prices</h3><p>A fresh white loaf for R19. We keep everyday bread affordable for families.</p></li>
+                    <li><h3>Made to order</h3><p>Tell us the occasion and budget and we&#8217;ll design a cake around it.</p></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION BANNER -->
+        <section class="cta-banner">
+            <div class="container cta-inner">
+                <h2>Planning a celebration?</h2>
+                <p>Custom cakes need at least 5 days&#8217; notice. Send us the details and we&#8217;ll reply with a quote within 24 hours.</p>
+                <a class="btn btn-light" href="enquiry.html">Start a cake enquiry</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== SITE FOOTER: contact summary, hours and quick links ===== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <section>
+                <h2>Visit us</h2>
+                <address>
+                    42 Victoria Road<br>
+                    Grassy Park, Cape Town, 7941<br>
+                    <a href="tel:+27217051234">021&nbsp;705&nbsp;1234</a><br>
+                    <a href="mailto:orders@desaisbakery.co.za">orders@desaisbakery.co.za</a>
+                </address>
+            </section>
+            <section>
+                <h2>Trading hours</h2>
+                <ul class="plain-list">
+                    <li>Mon &#8211; Fri: 06:30 &#8211; 18:00</li>
+                    <li>Saturday: 07:00 &#8211; 14:00</li>
+                    <li>Sunday: 07:00 &#8211; 12:00</li>
+                    <li>Market stall: Sat 08:00 &#8211; 13:00</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Quick links</h2>
+                <ul class="plain-list">
+                    <li><a href="products.html">Our menu</a></li>
+                    <li><a href="enquiry.html">Order a custom cake</a></li>
+                    <li><a href="contact.html">Find both locations</a></li>
+                </ul>
+            </section>
+        </div>
+        <p class="footer-note container">
+            &copy; 2026 Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
+        </p>
+    </footer>
+</body>
+</html>
