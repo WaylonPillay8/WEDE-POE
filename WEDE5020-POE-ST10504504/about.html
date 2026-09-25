@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <!-- Character set and responsive viewport so the layout scales on phones and tablets -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The story of Desai's Bakery in Grassy Park: a family bakery since 2014. Our mission, vision and the people behind the ovens.">
+    <meta name="author" content="Waylon Pillay (ST10504504)">
+    <title>About Us | Desai&#8217;s Bakery, Grassy Park</title>
+    <!-- Favicon and the single external stylesheet shared by every page -->
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip link lets keyboard users jump straight past the navigation -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ===== SITE HEADER: logo + main navigation (identical on all five pages) ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <img src="images/logo.svg" alt="" width="48" height="48">
+                <span class="brand-text">Desai&#8217;s Bakery<small>Jadeed&#8217;s Bread</small></span>
+            </a>
+
+            <!-- Checkbox + label create a CSS-only hamburger menu on small screens (no JavaScript needed) -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Show or hide the menu">
+            <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active" aria-current="page">About Us</a></li>
+                <li><a href="products.html">Menu</a></li>
+                <li><a href="enquiry.html">Order &amp; Enquire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- PAGE BANNER -->
+        <section class="page-banner">
+            <div class="container">
+                <h1>About us</h1>
+                <p class="lead">A family bakery that grew out of a home kitchen in Grassy Park.</p>
+            </div>
+        </section>
+
+        <!-- HISTORY -->
+        <section class="section">
+            <div class="container split">
+                <div>
+                    <h2>Our story</h2>
+                    <p>In 2014 Farzana Desai started baking bread and koesisters in her kitchen for neighbours on the weekend. Word spread through the school gates and the mosque, and soon regulars were asking for standing weekly orders.</p>
+                    <p>In 2018 the family opened a small shop on Victoria Road. Farzana&#8217;s son Jadeed took over the bread ovens, which is where the name &#8220;Jadeed&#8217;s Bread&#8221; comes from, and daughter Aisha began taking custom cake orders.</p>
+                    <p>Today most orders still come in by phone and word of mouth. This website is our first step to making ordering easier for customers across the southern suburbs.</p>
+                </div>
+                <picture>
+                    <source type="image/webp" srcset="images/bakery-kitchen-480.webp 480w, images/bakery-kitchen-960.webp 960w" sizes="(min-width: 48em) 50vw, 100vw">
+                    <img src="images/bakery-kitchen-960.jpg" srcset="images/bakery-kitchen-480.jpg 480w, images/bakery-kitchen-960.jpg 960w" sizes="(min-width: 48em) 50vw, 100vw"
+                         alt="Bakery oven with loaves baking and trays of koesisters and cupcakes cooling on the counter" width="960" height="720" loading="lazy">
+                </picture>
+            </div>
+        </section>
+
+        <!-- MILESTONES: an ordered list works well for a short timeline -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Milestones</h2>
+                <ol class="timeline">
+                    <li><span class="year">2014</span> Weekend baking from the family kitchen</li>
+                    <li><span class="year">2018</span> Shop opens at 42 Victoria Road, Grassy Park</li>
+                    <li><span class="year">2021</span> Custom celebration cakes added</li>
+                    <li><span class="year">2023</span> Saturday stall at the Klip Road community market</li>
+                    <li><span class="year">2026</span> Online menu and order enquiries launched</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- MISSION AND VISION -->
+        <section class="section">
+            <h2 class="visually-hidden">Mission and vision</h2>
+            <div class="container two-col">
+                <article class="panel">
+                    <h2>Our mission</h2>
+                    <p>To serve our community with high-quality, freshly baked goods made with care, and to make ordering, celebrating and getting in touch with us simple and convenient.</p>
+                </article>
+                <article class="panel">
+                    <h2>Our vision</h2>
+                    <p>To be the southern suburbs&#8217; first choice for fresh daily bread and custom celebration cakes, known for friendly service in store and online.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- TEAM: initials are used instead of photos -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Meet the family</h2>
+                <div class="team-grid">
+                    <article class="team-card">
+                        <span class="avatar" aria-hidden="true">FD</span>
+                        <h3>Farzana Desai</h3>
+                        <p class="role">Founder &amp; head baker</p>
+                        <p>Still makes every batch of koesister dough by hand, from her mother&#8217;s recipe.</p>
+                    </article>
+                    <article class="team-card">
+                        <span class="avatar" aria-hidden="true">JD</span>
+                        <h3>Jadeed Desai</h3>
+                        <p class="role">Bread baker</p>
+                        <p>In at 04:30 every morning. Responsible for the sourdough starter he calls &#8220;Uncle Boeta&#8221;.</p>
+                    </article>
+                    <article class="team-card">
+                        <span class="avatar" aria-hidden="true">AD</span>
+                        <h3>Aisha Desai</h3>
+                        <p class="role">Cakes &amp; orders</p>
+                        <p>Designs the celebration cakes and answers every enquiry that comes through this site.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why choose us</h2>
+                <ul class="feature-list">
+                    <li><h3>Real ingredients</h3><p>Butter, free-range eggs and flour from a Western Cape mill. No premixes.</p></li>
+                    <li><h3>Community first</h3><p>We supply two local school tuck shops and donate unsold bread every evening.</p></li>
+                    <li><h3>Halaal-friendly kitchen</h3><p>No pork or alcohol is used in any of our products.</p></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== SITE FOOTER: contact summary, hours and quick links ===== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <section>
+                <h2>Visit us</h2>
+                <address>
+                    42 Victoria Road<br>
+                    Grassy Park, Cape Town, 7941<br>
+                    <a href="tel:+27217051234">021&nbsp;705&nbsp;1234</a><br>
+                    <a href="mailto:orders@desaisbakery.co.za">orders@desaisbakery.co.za</a>
+                </address>
+            </section>
+            <section>
+                <h2>Trading hours</h2>
+                <ul class="plain-list">
+                    <li>Mon &#8211; Fri: 06:30 &#8211; 18:00</li>
+                    <li>Saturday: 07:00 &#8211; 14:00</li>
+                    <li>Sunday: 07:00 &#8211; 12:00</li>
+                    <li>Market stall: Sat 08:00 &#8211; 13:00</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Quick links</h2>
+                <ul class="plain-list">
+                    <li><a href="products.html">Our menu</a></li>
+                    <li><a href="enquiry.html">Order a custom cake</a></li>
+                    <li><a href="contact.html">Find both locations</a></li>
+                </ul>
+            </section>
+        </div>
+        <p class="footer-note container">
+            &copy; 2026 Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
+        </p>
+    </footer>
+</body>
+</html>
