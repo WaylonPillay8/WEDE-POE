@@ -1,0 +1,1087 @@
+/* ==========================================================================
+   Desai's Bakery – Jadeed's Bread | style.css
+   WEDE5020 POE Part 2 – Waylon Pillay (ST10504504)
+
+   One external stylesheet, linked from all five pages.
+   Structure:
+     1. Fonts (self-hosted)
+     2. CSS reset
+     3. Design tokens (custom properties)
+     4. Base styles and typography
+     5. Layout helpers
+     6. Header and navigation
+     7. Buttons and links (incl. pseudo-classes)
+     8. Page sections and components
+     9. Menu tables
+    10. Forms
+    11. Footer
+    12. Responsive design: tablet (max 64em) and mobile (max 48em / 30em)
+
+   Styles are written for the desktop first, then media queries adjust
+   the layout, type and navigation for smaller screens.
+   ========================================================================== */
+
+
+/* 1. FONTS --------------------------------------------------------------
+   Playfair Display (headings) and Lato (body) are stored in /fonts so the
+   site does not depend on an external font service. Both use the SIL
+   Open Font License. font-display: swap shows fallback text while loading. */
+@font-face {
+    font-family: "Playfair Display";
+    src: url("../fonts/playfair-display-latin-700-normal.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Lato";
+    src: url("../fonts/lato-latin-400-normal.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Lato";
+    src: url("../fonts/lato-latin-400-italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Lato";
+    src: url("../fonts/lato-latin-700-normal.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* 2. CSS RESET ----------------------------------------------------------
+   Removes browser default margins and makes sizing predictable so the
+   site looks the same in Chrome, Firefox, Edge and Safari. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+img,
+picture,
+svg,
+iframe {
+    display: block;
+    max-width: 100%;       /* images never overflow their container */
+}
+
+img {
+    height: auto;          /* keeps the aspect ratio when width shrinks */
+}
+
+input,
+button,
+select,
+textarea {
+    font: inherit;         /* form controls use the site font */
+    color: inherit;
+}
+
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+
+/* 3. DESIGN TOKENS ------------------------------------------------------
+   Colours and sizes from the Website Project Proposal, stored once and
+   reused everywhere with var(). */
+:root {
+    /* Colour scheme */
+    --cream: #FBF3E7;          /* page background */
+    --cream-dark: #F3E4CC;     /* alternate section background */
+    --terracotta: #C96F3E;     /* decorative accent */
+    --terracotta-dark: #A9552B;/* buttons and links (darker to pass WCAG AA contrast) */
+    --terracotta-deep: #8A431F;/* hover / active state */
+    --brown: #4A2E20;          /* main text */
+    --brown-soft: #6B4A3A;     /* secondary text */
+    --gold: #D9A441;           /* small highlights */
+    --white: #FFFFFF;
+
+    /* Typography */
+    --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+    --font-body: "Lato", "Segoe UI", Arial, sans-serif;
+
+    /* Type scale (1.25 ratio) using rem so it respects browser font settings */
+    --fs-small: 0.875rem;  /* 14px */
+    --fs-base: 1rem;       /* 16px */
+    --fs-h3: 1.25rem;      /* 20px */
+    --fs-h2: 1.75rem;      /* 28px */
+    --fs-h1: 2.75rem;      /* 44px */
+
+    /* Spacing and shape */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --radius: 0.75rem;
+    --shadow: 0 0.25rem 1rem rgba(74, 46, 32, 0.12);
+    --max-width: 75rem;    /* 1200px */
+}
+
+
+/* 4. BASE STYLES AND TYPOGRAPHY ---------------------------------------- */
+body {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--brown);
+    background-color: var(--cream);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--brown);
+    letter-spacing: 0.01em;
+}
+
+h1 { font-size: var(--fs-h1); margin-bottom: var(--space-sm); }
+h2 { font-size: var(--fs-h2); margin-bottom: var(--space-sm); }
+h3 { font-size: var(--fs-h3); margin-bottom: var(--space-xs); }
+
+p + p {
+    margin-top: var(--space-sm);
+}
+
+a {
+    color: var(--terracotta-dark);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.2em;
+}
+
+address {
+    font-style: normal;
+}
+
+.lead {
+    font-size: 1.125rem;
+    color: var(--brown-soft);
+    max-width: 40rem;
+}
+
+.eyebrow {
+    font-size: var(--fs-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--terracotta-dark);
+    margin-bottom: var(--space-xs);
+}
+
+/* Hides text visually but keeps it available to screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* Skip link is hidden until it receives keyboard focus */
+.skip-link {
+    position: absolute;
+    left: var(--space-sm);
+    top: -3rem;
+    background: var(--brown);
+    color: var(--white);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius);
+    z-index: 100;
+}
+.skip-link:focus {
+    top: var(--space-sm);
+}
+
+
+/* 5. LAYOUT HELPERS ------------------------------------------------------ */
+.container {
+    width: 90%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+}
+
+.section {
+    padding-block: var(--space-xl);
+}
+
+.section-alt {
+    background-color: var(--cream-dark);
+}
+
+.section-title {
+    text-align: center;
+}
+
+.section-intro {
+    text-align: center;
+    color: var(--brown-soft);
+    max-width: 40rem;
+    margin: 0 auto var(--space-lg);
+}
+
+/* Two columns: image + text side by side (Grid) */
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+/* Rounded corners and a soft shadow on content images */
+.split picture img,
+.menu-image img,
+.contact-details picture img {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+
+/* 6. HEADER AND NAVIGATION ---------------------------------------------- */
+.site-header {
+    background-color: var(--white);
+    border-bottom: 4px solid var(--terracotta);
+    position: sticky;      /* header stays visible while scrolling */
+    top: 0;
+    z-index: 50;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-block: var(--space-sm);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    text-decoration: none;
+}
+
+.brand-text {
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--brown);
+    line-height: 1.1;
+}
+
+.brand-text small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta-dark);
+}
+
+.main-nav ul {
+    display: flex;
+    gap: var(--space-xs);
+    list-style: none;      /* removes the default bullets */
+}
+
+.main-nav a {
+    display: block;
+    padding: 0.5rem 0.9rem;
+    border-radius: 2rem;
+    color: var(--brown);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Pseudo-classes give feedback on hover, keyboard focus and click */
+.main-nav a:hover {
+    background-color: var(--cream-dark);
+}
+.main-nav a:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+}
+.main-nav a:active {
+    background-color: var(--terracotta);
+    color: var(--white);
+}
+
+/* Current page is highlighted */
+.main-nav a.active {
+    background-color: var(--terracotta-dark);
+    color: var(--white);
+}
+
+/* The hamburger checkbox and icon are hidden on desktop */
+.nav-toggle,
+.nav-toggle-label {
+    display: none;
+}
+
+
+/* 7. BUTTONS AND LINKS --------------------------------------------------- */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    border: 2px solid transparent;
+    border-radius: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--terracotta-dark);
+    color: var(--white);
+}
+.btn-primary:hover {
+    background-color: var(--terracotta-deep);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    border-color: var(--terracotta-dark);
+    color: var(--terracotta-dark);
+    background-color: transparent;
+}
+.btn-secondary:hover {
+    background-color: var(--terracotta-dark);
+    color: var(--white);
+}
+
+.btn-light {
+    background-color: var(--cream);
+    color: var(--brown);
+}
+.btn-light:hover {
+    background-color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Shared focus and active styles for every button */
+.btn:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+}
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.text-link {
+    font-weight: 700;
+}
+.text-link::after {
+    content: " \2192";     /* arrow after "View" links */
+}
+.text-link:hover {
+    color: var(--terracotta-deep);
+}
+
+
+/* 8. PAGE SECTIONS AND COMPONENTS -------------------------------------- */
+
+/* Hero (home page) */
+.hero {
+    background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+    padding-block: var(--space-xl);
+}
+
+.hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.hero-image img {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* Banner at the top of inner pages */
+.page-banner {
+    background-color: var(--brown);
+    padding-block: var(--space-lg);
+}
+.page-banner h1,
+.page-banner .lead {
+    color: var(--cream);
+}
+
+.jump-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+}
+.jump-links a {
+    padding: 0.35rem 1rem;
+    border: 1px solid var(--cream);
+    border-radius: 2rem;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: var(--fs-small);
+    font-weight: 700;
+}
+.jump-links a:hover,
+.jump-links a:focus-visible {
+    background-color: var(--cream);
+    color: var(--brown);
+}
+
+/* Category cards (home page) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.5rem 1.5rem rgba(74, 46, 32, 0.18);
+}
+
+.card-body {
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex: 1;
+}
+.card-body .text-link {
+    margin-top: auto;      /* pushes the link to the bottom of each card */
+}
+
+/* Selling points list */
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+.feature-list li {
+    background-color: var(--white);
+    border-top: 4px solid var(--gold);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+}
+
+/* Call-to-action banner */
+.cta-banner {
+    background-color: var(--terracotta-dark);
+    padding-block: var(--space-lg);
+}
+.cta-inner {
+    text-align: center;
+}
+.cta-inner h2,
+.cta-inner p {
+    color: var(--white);
+}
+.cta-inner p {
+    margin-bottom: var(--space-md);
+}
+
+/* Generic panel */
+.panel {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow);
+}
+
+/* About: milestones timeline */
+.timeline {
+    max-width: 40rem;
+    margin: var(--space-lg) auto 0;
+    border-left: 4px solid var(--terracotta);
+}
+.timeline li {
+    position: relative;
+    padding: 0 0 var(--space-md) var(--space-md);
+}
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: -0.6rem;
+    top: 0.35rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--gold);
+    border: 3px solid var(--cream-dark);
+}
+.timeline .year {
+    display: inline-block;
+    min-width: 3.5rem;
+    font-weight: 700;
+    color: var(--terracotta-dark);
+}
+
+/* About: team cards */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+.team-card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+.avatar {
+    display: grid;
+    place-items: center;
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto var(--space-sm);
+    border-radius: 50%;
+    background-color: var(--terracotta);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+}
+.role {
+    font-size: var(--fs-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--terracotta-dark);
+}
+
+/* Menu page: image beside content */
+.menu-block {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: var(--space-lg);
+    align-items: start;
+}
+.menu-image {
+    position: sticky;
+    top: 7rem;
+}
+.allergen {
+    margin-top: var(--space-sm);
+    font-size: var(--fs-small);
+    color: var(--brown-soft);
+}
+
+/* Contact page */
+.location-card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    box-shadow: var(--shadow);
+}
+.location-card address {
+    font-weight: 700;
+}
+.location-card p {
+    color: var(--brown-soft);
+    font-size: var(--fs-small);
+    margin-bottom: var(--space-sm);
+}
+.map-frame {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+}
+.map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.contact-details dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-xs) var(--space-md);
+    margin-bottom: var(--space-md);
+}
+.contact-details dt {
+    font-weight: 700;
+}
+.contact-details dd,
+address a {
+    overflow-wrap: anywhere;   /* long email addresses wrap on very small screens */
+}
+
+
+/* 9. MENU TABLES ---------------------------------------------------------- */
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: var(--space-md);
+}
+.menu-table caption {
+    text-align: left;
+    font-size: var(--fs-small);
+    color: var(--brown-soft);
+    padding-bottom: var(--space-xs);
+}
+.menu-table th,
+.menu-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cream-dark);
+}
+.menu-table thead th {
+    background-color: var(--brown);
+    color: var(--cream);
+    font-size: var(--fs-small);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.menu-table tbody tr:nth-child(even) {
+    background-color: #FDF9F2;   /* zebra striping for readability */
+}
+.menu-table tbody tr:hover {
+    background-color: var(--cream-dark);
+}
+.menu-table .price {
+    font-weight: 700;
+    color: var(--terracotta-dark);
+    white-space: nowrap;
+    text-align: right;
+}
+.menu-table thead th:last-child {
+    text-align: right;
+}
+
+
+/* 10. FORMS -------------------------------------------------------------- */
+.form-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+}
+/* On the contact page the details panel is narrower than the form */
+.section-alt .form-layout {
+    grid-template-columns: 1fr 1.4fr;
+}
+
+.form-card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow);
+}
+
+fieldset {
+    border: none;
+    margin-bottom: var(--space-md);
+}
+legend {
+    font-family: var(--font-heading);
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: var(--space-sm);
+}
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+}
+
+label,
+.group-label {
+    font-weight: 700;
+    font-size: var(--fs-small);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 2px solid #D9C7AE;
+    border-radius: 0.5rem;
+    background-color: var(--white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: var(--terracotta);
+}
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--terracotta-dark);
+    box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.45);
+}
+/* Red border only after the user has typed something invalid */
+input:user-invalid,
+textarea:user-invalid,
+select:user-invalid {
+    border-color: #B3261E;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.radio-group.inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+}
+.radio-group label {
+    font-weight: 400;
+    font-size: var(--fs-base);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+input[type="radio"] {
+    accent-color: var(--terracotta-dark);
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.sidebar ul {
+    padding-left: 1.2rem;
+}
+.sidebar li + li {
+    margin-top: var(--space-xs);
+}
+
+
+/* 11. FOOTER --------------------------------------------------------------- */
+.site-footer {
+    background-color: var(--brown);
+    color: var(--cream);
+    padding-top: var(--space-lg);
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+.site-footer h2 {
+    color: var(--gold);
+    font-size: var(--fs-h3);
+}
+.site-footer a {
+    color: var(--cream);
+}
+.site-footer a:hover,
+.site-footer a:focus-visible {
+    color: var(--gold);
+}
+.plain-list li + li {
+    margin-top: 0.25rem;
+}
+.footer-note {
+    border-top: 1px solid rgba(251, 243, 231, 0.2);
+    margin-top: var(--space-lg);
+    padding-block: var(--space-md);
+    font-size: 0.8rem;
+    color: #D8C6B4;
+}
+
+
+/* ==========================================================================
+   12. RESPONSIVE DESIGN
+   Breakpoints:
+     - Tablet:  up to 64em (1024px)
+     - Mobile:  up to 48em (768px)
+     - Small mobile: up to 30em (480px)
+   Relative units (rem, em, %) are used throughout so text and spacing
+   scale smoothly between breakpoints.
+   ========================================================================== */
+
+/* ---------- TABLET (≤ 1024px) ---------- */
+@media (max-width: 64em) {
+    :root {
+        --fs-h1: 2.25rem;  /* 36px */
+        --fs-h2: 1.5rem;   /* 24px */
+        --space-xl: 3rem;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;       /* text on top, image underneath */
+        text-align: center;
+    }
+    .hero-text .lead {
+        margin-inline: auto;
+    }
+    .button-row {
+        justify-content: center;
+    }
+
+    .card-grid,
+    .team-grid,
+    .feature-list {
+        gap: var(--space-sm);              /* tighter gaps keep three columns readable */
+    }
+    .card-body,
+    .team-card {
+        padding: var(--space-sm);
+    }
+
+    .menu-block {
+        grid-template-columns: 1fr;       /* image above the table */
+    }
+    .menu-image {
+        position: static;
+        max-width: 36rem;
+    }
+
+    .form-layout,
+    .section-alt .form-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .main-nav a {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* ---------- MOBILE (≤ 768px) ---------- */
+@media (max-width: 48em) {
+    :root {
+        --fs-h1: 2rem;     /* 32px */
+        --fs-h2: 1.375rem; /* 22px */
+        --fs-h3: 1.125rem; /* 18px */
+        --space-xl: 2.5rem;
+        --space-lg: 1.75rem;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    /* Hamburger icon replaces the horizontal menu */
+    .nav-toggle-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+        display: block;
+        position: relative;
+        width: 1.5rem;
+        height: 3px;
+        border-radius: 2px;
+        background-color: var(--brown);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+    }
+    .nav-toggle-label span::before { top: -0.5rem; }
+    .nav-toggle-label span::after  { top: 0.5rem; }
+
+    /* Checkbox is visually hidden but still reachable with the keyboard */
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        opacity: 0;
+        width: 2.75rem;
+        height: 2.75rem;
+        top: 1.1rem;
+        right: 0;
+        cursor: pointer;
+        z-index: 2;
+    }
+    .nav-toggle:focus-visible + .nav-toggle-label {
+        outline: 3px solid var(--gold);
+    }
+
+    .header-inner {
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    /* Menu is collapsed until the checkbox is ticked */
+    .main-nav {
+        flex-basis: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    .nav-toggle:checked ~ .main-nav {
+        max-height: 25rem;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0.25rem;
+        padding-block: var(--space-xs);
+    }
+    .main-nav a {
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+    }
+
+    /* Hamburger turns into an X when open */
+    .nav-toggle:checked + .nav-toggle-label span {
+        background-color: transparent;
+    }
+    .nav-toggle:checked + .nav-toggle-label span::before {
+        transform: translateY(0.5rem) rotate(45deg);
+    }
+    .nav-toggle:checked + .nav-toggle-label span::after {
+        transform: translateY(-0.5rem) rotate(-45deg);
+    }
+
+    /* Everything drops to a single column */
+    .split,
+    .two-col,
+    .card-grid,
+    .team-grid,
+    .feature-list,
+    .footer-grid,
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+
+    .panel,
+    .form-card {
+        padding: var(--space-md);
+    }
+
+    /* Menu table: hide the description column header and stack the description */
+    .menu-table th,
+    .menu-table td {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.95rem;
+    }
+    .menu-table thead th:nth-child(2) {
+        display: none;
+    }
+    .menu-table tbody tr {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+    .menu-table tbody td:nth-child(2) {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        padding-top: 0;
+        font-size: var(--fs-small);
+        color: var(--brown-soft);
+        border-bottom: 1px solid var(--cream-dark);
+    }
+    .menu-table tbody th,
+    .menu-table tbody .price {
+        border-bottom: none;
+    }
+    .menu-table thead tr {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+}
+
+/* ---------- SMALL MOBILE (≤ 480px) ---------- */
+@media (max-width: 30em) {
+    :root {
+        --fs-h1: 1.75rem;  /* 28px */
+    }
+
+    .brand-text {
+        font-size: 1.125rem;
+    }
+    .brand img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn {
+        width: 100%;               /* full-width buttons are easier to tap */
+        text-align: center;
+    }
+
+    .radio-group.inline {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
