@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <!-- Character set and responsive viewport so the layout scales on phones and tablets -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Request a quote for a custom celebration cake or catering order from Desai's Bakery in Grassy Park.">
+    <meta name="author" content="Waylon Pillay (ST10504504)">
+    <title>Order &amp; Enquire | Desai&#8217;s Bakery, Grassy Park</title>
+    <!-- Favicon and the single external stylesheet shared by every page -->
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip link lets keyboard users jump straight past the navigation -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ===== SITE HEADER: logo + main navigation (identical on all five pages) ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <img src="images/logo.svg" alt="" width="48" height="48">
+                <span class="brand-text">Desai&#8217;s Bakery<small>Jadeed&#8217;s Bread</small></span>
+            </a>
+
+            <!-- Checkbox + label create a CSS-only hamburger menu on small screens (no JavaScript needed) -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Show or hide the menu">
+            <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Menu</a></li>
+                <li><a href="enquiry.html" class="active" aria-current="page">Order &amp; Enquire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-banner">
+            <div class="container">
+                <h1>Order &amp; enquire</h1>
+                <p class="lead">Tell us about your occasion and we&#8217;ll reply with a quote within 24 hours (Mon&#8211;Sat).</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="visually-hidden">Enquiry form</h2>
+            <div class="container form-layout">
+                <!-- ENQUIRY FORM: HTML5 attributes (required, type, min) give basic built-in validation.
+                     The form has no server yet, so it does not send anywhere. -->
+                <form class="form-card" action="#" method="post">
+                    <fieldset>
+                        <legend>1. What do you need?</legend>
+                        <div class="radio-group">
+                            <label><input type="radio" name="enquiry-type" value="custom-cake" checked> Custom celebration cake</label>
+                            <label><input type="radio" name="enquiry-type" value="catering"> Catering platter</label>
+                            <label><input type="radio" name="enquiry-type" value="bulk"> Bulk bread order</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>2. Occasion details</legend>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="occasion">Occasion</label>
+                                <select id="occasion" name="occasion" required>
+                                    <option value="">Choose an occasion</option>
+                                    <option>Birthday</option>
+                                    <option>Wedding / engagement</option>
+                                    <option>Eid / religious celebration</option>
+                                    <option>Baby shower</option>
+                                    <option>Corporate / school event</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="date-needed">Date needed</label>
+                                <input type="date" id="date-needed" name="date-needed" required>
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="servings">Number of servings</label>
+                                <input type="number" id="servings" name="servings" min="6" max="300" placeholder="e.g. 20" required>
+                            </div>
+                            <div class="field">
+                                <label for="flavour">Flavour preference</label>
+                                <select id="flavour" name="flavour">
+                                    <option>Chocolate</option>
+                                    <option>Vanilla</option>
+                                    <option>Red velvet</option>
+                                    <option>Carrot</option>
+                                    <option>Not sure yet</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="budget">Budget range</label>
+                            <select id="budget" name="budget">
+                                <option>Under R600</option>
+                                <option>R600 &#8211; R1 000</option>
+                                <option>R1 000 &#8211; R2 000</option>
+                                <option>Over R2 000</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="inspiration">Design inspiration (optional image)</label>
+                            <input type="file" id="inspiration" name="inspiration" accept="image/*">
+                        </div>
+                        <div class="field">
+                            <label for="details">Anything else we should know?</label>
+                            <textarea id="details" name="details" rows="4" placeholder="Theme, colours, wording on the cake, allergies..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>3. Your contact details</legend>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="full-name">Full name</label>
+                                <input type="text" id="full-name" name="full-name" autocomplete="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="phone">Cellphone</label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="0[0-9]{9}" placeholder="0712345678" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" autocomplete="email" required>
+                        </div>
+                        <div class="radio-group inline">
+                            <span class="group-label">Preferred contact:</span>
+                            <label><input type="radio" name="contact-pref" value="whatsapp" checked> WhatsApp</label>
+                            <label><input type="radio" name="contact-pref" value="call"> Call</label>
+                            <label><input type="radio" name="contact-pref" value="email"> Email</label>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-primary">Submit enquiry</button>
+                </form>
+
+                <!-- SIDEBAR: ordering tips -->
+                <aside class="panel sidebar">
+                    <h2>Good to know</h2>
+                    <ul>
+                        <li>Custom cakes need at least <strong>5 days&#8217;</strong> notice. Wedding cakes need 3 weeks.</li>
+                        <li>A 50% deposit confirms your order.</li>
+                        <li>Collection is from the Victoria Road shop. Delivery in Grassy Park, Lotus River and Wetton is R60.</li>
+                        <li>Prefer to chat? WhatsApp us on <a href="https://wa.me/27712345678">071&nbsp;234&nbsp;5678</a>.</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== SITE FOOTER: contact summary, hours and quick links ===== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <section>
+                <h2>Visit us</h2>
+                <address>
+                    42 Victoria Road<br>
+                    Grassy Park, Cape Town, 7941<br>
+                    <a href="tel:+27217051234">021&nbsp;705&nbsp;1234</a><br>
+                    <a href="mailto:orders@desaisbakery.co.za">orders@desaisbakery.co.za</a>
+                </address>
+            </section>
+            <section>
+                <h2>Trading hours</h2>
+                <ul class="plain-list">
+                    <li>Mon &#8211; Fri: 06:30 &#8211; 18:00</li>
+                    <li>Saturday: 07:00 &#8211; 14:00</li>
+                    <li>Sunday: 07:00 &#8211; 12:00</li>
+                    <li>Market stall: Sat 08:00 &#8211; 13:00</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Quick links</h2>
+                <ul class="plain-list">
+                    <li><a href="products.html">Our menu</a></li>
+                    <li><a href="enquiry.html">Order a custom cake</a></li>
+                    <li><a href="contact.html">Find both locations</a></li>
+                </ul>
+            </section>
+        </div>
+        <p class="footer-note container">
+            &copy; 2026 Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
+        </p>
+    </footer>
+</body>
+</html>
