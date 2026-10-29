@@ -3,13 +3,35 @@
 <head>
     <!-- Character set and responsive viewport so the layout scales on phones and tablets -->
     <meta charset="UTF-8">
+    <!-- SECURITY: Content Security Policy only allows scripts, styles and fonts from this site,
+         map tiles from OpenStreetMap and form posts to Formspree (MDN Web Docs, 2026g) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; font-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io mailto:; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The story of Desai's Bakery in Grassy Park: a family bakery since 2014. Our mission, vision and the people behind the ovens.">
+    <meta name="description" content="Meet the Desai family, baking in Grassy Park since 2014. Our story, mission, team and a photo gallery from inside the bakery and market stall.">
     <meta name="author" content="Waylon Pillay (ST10504504)">
-    <title>About Us | Desai&#8217;s Bakery, Grassy Park</title>
+    <!-- SEO: keywords, indexing, canonical URL and social sharing (Open Graph) tags -->
+    <meta name="keywords" content="family bakery Cape Town, Desai&#8217;s Bakery history, Grassy Park bakery story, bakery gallery, halaal-friendly bakery Cape Town">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#4A2E20">
+    <link rel="canonical" href="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/about.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread">
+    <meta property="og:title" content="About Our Family Bakery in Grassy Park | Desai&#8217;s Bakery">
+    <meta property="og:description" content="Meet the Desai family, baking in Grassy Park since 2014. Our story, mission, team and a photo gallery from inside the bakery and market stall.">
+    <meta property="og:url" content="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/about.html">
+    <meta property="og:image" content="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/images/storefront-960.jpg">
+    <meta property="og:image:alt" content="Front of Desai&#8217;s Bakery on Victoria Road, Grassy Park">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>About Our Family Bakery in Grassy Park | Desai&#8217;s Bakery</title>
     <!-- Favicon and the single external stylesheet shared by every page -->
     <link rel="icon" href="images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/style.css">
+    <!-- JavaScript (Part 3). "defer" downloads the files without blocking the page
+         and runs them in order once the HTML has been read. -->
+    <script src="js/main.js" defer></script>
+    <script src="js/gallery.js" defer></script>
 </head>
 <body>
     <!-- Skip link lets keyboard users jump straight past the navigation -->
@@ -98,7 +120,7 @@
         <section class="section section-alt">
             <div class="container">
                 <h2 class="section-title">Meet the family</h2>
-                <div class="team-grid">
+                <div class="team-grid reveal">
                     <article class="team-card">
                         <span class="avatar" aria-hidden="true">FD</span>
                         <h3>Farzana Desai</h3>
@@ -121,11 +143,86 @@
             </div>
         </section>
 
+        <!-- GALLERY (Part 3): thumbnails link to the large images. js/gallery.js opens them
+             in a lightbox with previous/next, keyboard and swipe controls. -->
+        <section class="section" aria-labelledby="gallery-title">
+            <div class="container">
+                <h2 class="section-title" id="gallery-title">Inside the bakery</h2>
+                <p class="section-intro">A look around the shop, the kitchen and the market stall. Select a photo to see it larger.</p>
+                <ul class="gallery reveal">
+                    <li>
+                        <a href="images/storefront-960.jpg" data-lightbox data-caption="The shop at 42 Victoria Road, open since 2018">
+                            <picture>
+                                <source type="image/webp" srcset="images/storefront-480.webp">
+                                <img src="images/storefront-480.jpg" alt="Front of Desai&#8217;s Bakery with a terracotta awning and loaves in the window" width="480" height="360" loading="lazy">
+                            </picture>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="images/bakery-kitchen-960.jpg" data-lightbox data-caption="The oven, where the first loaves go in at 05:00">
+                            <picture>
+                                <source type="image/webp" srcset="images/bakery-kitchen-480.webp">
+                                <img src="images/bakery-kitchen-480.jpg" alt="Bakery oven with loaves baking and trays of koesisters and cupcakes cooling on the counter" width="480" height="360" loading="lazy">
+                            </picture>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="images/hero-bread-display-960.jpg" data-lightbox data-caption="The bread shelf at opening time">
+                            <picture>
+                                <source type="image/webp" srcset="images/hero-bread-display-480.webp">
+                                <img src="images/hero-bread-display-480.jpg" alt="Shelves of freshly baked loaves above a counter with cakes and tarts" width="480" height="270" loading="lazy">
+                            </picture>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="images/breads-960.jpg" data-lightbox data-caption="White, seed and baguette &#8211; baked every morning">
+                            <picture>
+                                <source type="image/webp" srcset="images/breads-480.webp">
+                                <img src="images/breads-480.jpg" alt="A domed white loaf, a round seed loaf and a baguette on a wooden counter" width="480" height="360" loading="lazy">
+                            </picture>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="images/cakes-960.jpg" data-lightbox data-caption="A two-tier birthday cake designed by Aisha">
+                            <picture>
+                                <source type="image/webp" srcset="images/cakes-480.webp">
+                                <img src="images/cakes-480.jpg" alt="Two-tier chocolate cake with pink icing and candles, flanked by cupcakes" width="480" height="360" loading="lazy">
+                            </picture>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="images/tarts-960.jpg" data-lightbox data-caption="Milk tart and koesisters, two Cape favourites">
+                            <picture>
+                                <source type="image/webp" srcset="images/tarts-480.webp">
+                                <img src="images/tarts-480.jpg" alt="A whole milk tart dusted with cinnamon surrounded by Cape Malay koesisters" width="480" height="360" loading="lazy">
+                            </picture>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="images/catering-platter-960.jpg" data-lightbox data-caption="A cupcake platter ready for collection">
+                            <picture>
+                                <source type="image/webp" srcset="images/catering-platter-480.webp">
+                                <img src="images/catering-platter-480.jpg" alt="Large round platter holding a dozen cupcakes with pink, cream and green icing" width="480" height="360" loading="lazy">
+                            </picture>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="images/market-stall-960.jpg" data-lightbox data-caption="Our Saturday stall at the Klip Road market">
+                            <picture>
+                                <source type="image/webp" srcset="images/market-stall-480.webp">
+                                <img src="images/market-stall-480.jpg" alt="Bakery market stall under a striped terracotta awning with bread and cake on the table" width="480" height="360" loading="lazy">
+                            </picture>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         <!-- WHY CHOOSE US -->
-        <section class="section">
+        <section class="section section-alt">
             <div class="container">
                 <h2 class="section-title">Why choose us</h2>
-                <ul class="feature-list">
+                <ul class="feature-list reveal">
                     <li><h3>Real ingredients</h3><p>Butter, free-range eggs and flour from a Western Cape mill. No premixes.</p></li>
                     <li><h3>Community first</h3><p>We supply two local school tuck shops and donate unsold bread every evening.</p></li>
                     <li><h3>Halaal-friendly kitchen</h3><p>No pork or alcohol is used in any of our products.</p></li>
@@ -154,6 +251,8 @@
                     <li>Sunday: 07:00 &#8211; 12:00</li>
                     <li>Market stall: Sat 08:00 &#8211; 13:00</li>
                 </ul>
+                <!-- Filled in by main.js with the live open/closed status -->
+                <p class="open-status" data-open-status hidden></p>
             </section>
             <section>
                 <h2>Quick links</h2>
@@ -165,7 +264,7 @@
             </section>
         </div>
         <p class="footer-note container">
-            &copy; 2026 Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
+            &copy; <span data-year>2026</span> Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
         </p>
     </footer>
 </body>
