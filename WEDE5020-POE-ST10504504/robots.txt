@@ -1,0 +1,14 @@
+# robots.txt – Desai's Bakery (WEDE5020 POE Part 3, Waylon Pillay ST10504504)
+# Tells search engine crawlers which parts of the site to index.
+
+User-agent: *
+# Paths start from the GitHub Pages domain root (the site lives in /WEDE-POE/...).
+# The five public pages, images, CSS and JavaScript may all be crawled
+Allow: /WEDE-POE/WEDE5020-POE-ST10504504/
+
+# Development evidence and project documents are not useful in search results
+Disallow: /WEDE-POE/WEDE5020-POE-ST10504504/screenshots/
+Disallow: /WEDE-POE/WEDE5020-POE-ST10504504/docs/
+Disallow: /WEDE-POE/WEDE5020-POE-ST10504504/README.md
+
+Sitemap: https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/sitemap.xml
