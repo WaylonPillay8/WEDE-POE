@@ -3,13 +3,35 @@
 <head>
     <!-- Character set and responsive viewport so the layout scales on phones and tablets -->
     <meta charset="UTF-8">
+    <!-- SECURITY: Content Security Policy only allows scripts, styles and fonts from this site,
+         map tiles from OpenStreetMap and form posts to Formspree (MDN Web Docs, 2026g) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; font-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io mailto:; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Menu and prices for Desai's Bakery, Grassy Park: fresh bread from R18, cakes, milk tart, koesisters and catering platters.">
+    <meta name="description" content="Search the full menu and prices: bread from R18, cakes by the slice or whole, milk tart, koesisters, hertzoggies and catering platters in Grassy Park.">
     <meta name="author" content="Waylon Pillay (ST10504504)">
-    <title>Menu | Desai&#8217;s Bakery, Grassy Park</title>
+    <!-- SEO: keywords, indexing, canonical URL and social sharing (Open Graph) tags -->
+    <meta name="keywords" content="bakery menu Cape Town, bread prices, cake prices Cape Town, milk tart price, koesisters Grassy Park, catering platters Cape Town">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#4A2E20">
+    <link rel="canonical" href="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/products.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread">
+    <meta property="og:title" content="Bakery Menu &amp; Prices: Bread, Cakes &amp; Treats | Desai&#8217;s Bakery">
+    <meta property="og:description" content="Search the full menu and prices: bread from R18, cakes by the slice or whole, milk tart, koesisters, hertzoggies and catering platters in Grassy Park.">
+    <meta property="og:url" content="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/products.html">
+    <meta property="og:image" content="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/images/cakes-960.jpg">
+    <meta property="og:image:alt" content="Two-tier chocolate cake with pink icing and cupcakes">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Bakery Menu &amp; Prices: Bread, Cakes &amp; Treats | Desai&#8217;s Bakery</title>
     <!-- Favicon and the single external stylesheet shared by every page -->
     <link rel="icon" href="images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/style.css">
+    <!-- JavaScript (Part 3). "defer" downloads the files without blocking the page
+         and runs them in order once the HTML has been read. -->
+    <script src="js/main.js" defer></script>
+    <script src="js/menu.js" defer></script>
 </head>
 <body>
     <!-- Skip link lets keyboard users jump straight past the navigation -->
@@ -54,8 +76,49 @@
             </div>
         </section>
 
+        <!-- MENU FINDER (Part 3): js/menu.js filters the tables below as the visitor types,
+             and sorts each table by price or name. Hidden until JavaScript is running. -->
+        <section class="section finder-section" aria-label="Search the menu">
+            <div class="container">
+                <form id="menu-finder" class="menu-finder" role="search" hidden>
+                    <div class="field finder-search">
+                        <label for="menu-search">Search the menu</label>
+                        <input type="search" id="menu-search" name="q" placeholder="Try &#8216;sourdough&#8217;, &#8216;chocolate&#8217; or &#8216;platter&#8217;" autocomplete="off" maxlength="40">
+                    </div>
+                    <div class="field">
+                        <label for="menu-category">Category</label>
+                        <select id="menu-category" name="category">
+                            <option value="all">All categories</option>
+                            <option value="breads">Breads</option>
+                            <option value="cakes">Cakes</option>
+                            <option value="tarts">Tarts &amp; treats</option>
+                            <option value="catering">Catering</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="menu-sort">Sort by</label>
+                        <select id="menu-sort" name="sort">
+                            <option value="default">Bakery&#8217;s order</option>
+                            <option value="price-asc">Price: low to high</option>
+                            <option value="price-desc">Price: high to low</option>
+                            <option value="name-asc">Name: A to Z</option>
+                        </select>
+                    </div>
+                    <button type="reset" class="btn btn-secondary">Clear</button>
+                </form>
+                <p id="menu-result-count" class="menu-results" aria-live="polite"></p>
+                <div id="menu-empty" class="panel menu-empty" hidden>
+                    <p>Nothing on the menu matches that search. We may still be able to bake it for you.</p>
+                    <div class="button-row">
+                        <button type="button" id="menu-clear" class="btn btn-secondary">Clear search</button>
+                        <a class="btn btn-primary" href="enquiry.html">Ask for a custom order</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- MENU CATEGORY: Breads -->
-        <section class="section" id="breads">
+        <section class="section menu-section" id="breads">
             <div class="container menu-block">
                 <picture class="menu-image">
                     <source type="image/webp" srcset="images/breads-480.webp 480w, images/breads-960.webp 960w" sizes="(min-width: 64em) 35vw, 100vw">
@@ -108,7 +171,7 @@
             </div>
         </section>
         <!-- MENU CATEGORY: Cakes -->
-        <section class="section section-alt" id="cakes">
+        <section class="section section-alt menu-section" id="cakes">
             <div class="container menu-block">
                 <picture class="menu-image">
                     <source type="image/webp" srcset="images/cakes-480.webp 480w, images/cakes-960.webp 960w" sizes="(min-width: 64em) 35vw, 100vw">
@@ -156,7 +219,7 @@
             </div>
         </section>
         <!-- MENU CATEGORY: Tarts &amp; treats -->
-        <section class="section" id="tarts">
+        <section class="section menu-section" id="tarts">
             <div class="container menu-block">
                 <picture class="menu-image">
                     <source type="image/webp" srcset="images/tarts-480.webp 480w, images/tarts-960.webp 960w" sizes="(min-width: 64em) 35vw, 100vw">
@@ -199,7 +262,7 @@
             </div>
         </section>
         <!-- MENU CATEGORY: Catering platters -->
-        <section class="section section-alt" id="catering">
+        <section class="section section-alt menu-section" id="catering">
             <div class="container menu-block">
                 <picture class="menu-image">
                     <source type="image/webp" srcset="images/catering-platter-480.webp 480w, images/catering-platter-960.webp 960w" sizes="(min-width: 64em) 35vw, 100vw">
@@ -267,6 +330,8 @@
                     <li>Sunday: 07:00 &#8211; 12:00</li>
                     <li>Market stall: Sat 08:00 &#8211; 13:00</li>
                 </ul>
+                <!-- Filled in by main.js with the live open/closed status -->
+                <p class="open-status" data-open-status hidden></p>
             </section>
             <section>
                 <h2>Quick links</h2>
@@ -278,7 +343,7 @@
             </section>
         </div>
         <p class="footer-note container">
-            &copy; 2026 Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
+            &copy; <span data-year>2026</span> Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
         </p>
     </footer>
 </body>
