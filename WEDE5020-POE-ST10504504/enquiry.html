@@ -3,13 +3,36 @@
 <head>
     <!-- Character set and responsive viewport so the layout scales on phones and tablets -->
     <meta charset="UTF-8">
+    <!-- SECURITY: Content Security Policy only allows scripts, styles and fonts from this site,
+         map tiles from OpenStreetMap and form posts to Formspree (MDN Web Docs, 2026g) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; font-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io mailto:; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Request a quote for a custom celebration cake or catering order from Desai's Bakery in Grassy Park.">
+    <meta name="description" content="Get an instant estimate for a custom celebration cake, catering platters or a bulk bread order from Desai&#8217;s Bakery, Grassy Park. Delivery R60.">
     <meta name="author" content="Waylon Pillay (ST10504504)">
-    <title>Order &amp; Enquire | Desai&#8217;s Bakery, Grassy Park</title>
+    <!-- SEO: keywords, indexing, canonical URL and social sharing (Open Graph) tags -->
+    <meta name="keywords" content="order custom cake Cape Town, birthday cake order, wedding cake Grassy Park, catering platters quote, bulk bread order, cake quote online">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#4A2E20">
+    <link rel="canonical" href="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/enquiry.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread">
+    <meta property="og:title" content="Order a Custom Cake or Catering in Cape Town | Desai&#8217;s Bakery">
+    <meta property="og:description" content="Get an instant estimate for a custom celebration cake, catering platters or a bulk bread order from Desai&#8217;s Bakery, Grassy Park. Delivery R60.">
+    <meta property="og:url" content="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/enquiry.html">
+    <meta property="og:image" content="https://waylonpillay8.github.io/WEDE-POE/WEDE5020-POE-ST10504504/images/catering-platter-960.jpg">
+    <meta property="og:image:alt" content="Large round platter holding a dozen cupcakes with pink, cream and green icing">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Order a Custom Cake or Catering in Cape Town | Desai&#8217;s Bakery</title>
     <!-- Favicon and the single external stylesheet shared by every page -->
     <link rel="icon" href="images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/style.css">
+    <!-- JavaScript (Part 3). "defer" downloads the files without blocking the page
+         and runs them in order once the HTML has been read. -->
+    <script src="js/main.js" defer></script>
+    <script src="js/validation.js" defer></script>
+    <script src="js/enquiry.js" defer></script>
 </head>
 <body>
     <!-- Skip link lets keyboard users jump straight past the navigation -->
@@ -50,9 +73,15 @@
         <section class="section">
             <h2 class="visually-hidden">Enquiry form</h2>
             <div class="container form-layout">
-                <!-- ENQUIRY FORM: HTML5 attributes (required, type, min) give basic built-in validation.
-                     The form has no server yet, so it does not send anywhere. -->
-                <form class="form-card" action="#" method="post">
+                <!-- ENQUIRY FORM (updated in Part 3)
+                     - HTML5 attributes (required, type, pattern, min, max) are the first layer of validation.
+                     - js/enquiry.js adds JavaScript validation with inline messages, works out an
+                       estimated quote and checks availability for the chosen date.
+                     - action: the mailto: address is the fallback when JavaScript is off. Replace it with
+                       a Formspree endpoint (https://formspree.io/f/...) to send enquiries with AJAX. -->
+                <div class="form-column">
+                <form class="form-card" id="enquiry-form" action="mailto:orders@desaisbakery.co.za" method="post" enctype="text/plain">
+                    <p id="enquiry-errors" class="form-summary" role="alert" hidden></p>
                     <fieldset>
                         <legend>1. What do you need?</legend>
                         <div class="radio-group">
@@ -79,13 +108,14 @@
                             </div>
                             <div class="field">
                                 <label for="date-needed">Date needed</label>
-                                <input type="date" id="date-needed" name="date-needed" required>
+                                <input type="date" id="date-needed" name="date-needed" required aria-describedby="date-hint">
+                                <p class="field-hint" id="date-hint">Custom cakes need 5 days&#8217; notice; weddings need 3 weeks.</p>
                             </div>
                         </div>
                         <div class="field-row">
                             <div class="field">
                                 <label for="servings">Number of servings</label>
-                                <input type="number" id="servings" name="servings" min="6" max="300" placeholder="e.g. 20" required>
+                                <input type="number" id="servings" name="servings" min="6" max="300" step="1" placeholder="e.g. 20" required>
                             </div>
                             <div class="field">
                                 <label for="flavour">Flavour preference</label>
@@ -101,10 +131,10 @@
                         <div class="field">
                             <label for="budget">Budget range</label>
                             <select id="budget" name="budget">
-                                <option>Under R600</option>
-                                <option>R600 &#8211; R1 000</option>
-                                <option>R1 000 &#8211; R2 000</option>
-                                <option>Over R2 000</option>
+                                <option value="under-600">Under R600</option>
+                                <option value="600-1000">R600 &#8211; R1 000</option>
+                                <option value="1000-2000">R1 000 &#8211; R2 000</option>
+                                <option value="over-2000">Over R2 000</option>
                             </select>
                         </div>
                         <div class="field">
@@ -113,20 +143,39 @@
                         </div>
                         <div class="field">
                             <label for="details">Anything else we should know?</label>
-                            <textarea id="details" name="details" rows="4" placeholder="Theme, colours, wording on the cake, allergies..."></textarea>
+                            <textarea id="details" name="details" rows="4" maxlength="500" placeholder="Theme, colours, wording on the cake, allergies..."></textarea>
                         </div>
                     </fieldset>
 
                     <fieldset>
-                        <legend>3. Your contact details</legend>
+                        <legend>3. Collection or delivery</legend>
+                        <div class="radio-group">
+                            <label><input type="radio" name="fulfilment" value="collect" checked> Collect from 42 Victoria Road (free)</label>
+                            <label><input type="radio" name="fulfilment" value="delivery"> Delivery (R60)</label>
+                        </div>
+                        <div class="field">
+                            <label for="delivery-suburb">Delivery area</label>
+                            <select id="delivery-suburb" name="delivery-suburb">
+                                <option value="">Choose an area</option>
+                                <option>Grassy Park</option>
+                                <option>Lotus River</option>
+                                <option>Wetton</option>
+                                <option>Ottery</option>
+                                <option>Parkwood</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>4. Your contact details</legend>
                         <div class="field-row">
                             <div class="field">
                                 <label for="full-name">Full name</label>
-                                <input type="text" id="full-name" name="full-name" autocomplete="name" required>
+                                <input type="text" id="full-name" name="full-name" autocomplete="name" minlength="2" maxlength="60" required>
                             </div>
                             <div class="field">
                                 <label for="phone">Cellphone</label>
-                                <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="0[0-9]{9}" placeholder="0712345678" required>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="0[0-9 ]{9,12}" maxlength="13" placeholder="071 234 5678" required>
                             </div>
                         </div>
                         <div class="field">
@@ -141,17 +190,22 @@
                         </div>
                     </fieldset>
 
-                    <button type="submit" class="btn btn-primary">Submit enquiry</button>
+                    <button type="submit" class="btn btn-primary">Get my quote</button>
                 </form>
+
+                <!-- RESPONSE: filled in by js/enquiry.js with the estimate, availability and send status -->
+                <div id="enquiry-response" class="form-card form-response" tabindex="-1" aria-live="polite" hidden></div>
+                </div>
 
                 <!-- SIDEBAR: ordering tips -->
                 <aside class="panel sidebar">
                     <h2>Good to know</h2>
                     <ul>
-                        <li>Custom cakes need at least <strong>5 days&#8217;</strong> notice. Wedding cakes need 3 weeks.</li>
+                        <li>Custom cakes need at least <strong>5 days&#8217;</strong> notice. Wedding cakes need 3 weeks. Catering needs 3 days and bulk bread 2 days.</li>
+                        <li>Your estimate appears as soon as you submit the form. The final price is confirmed when we reply.</li>
                         <li>A 50% deposit confirms your order.</li>
-                        <li>Collection is from the Victoria Road shop. Delivery in Grassy Park, Lotus River and Wetton is R60.</li>
-                        <li>Prefer to chat? WhatsApp us on <a href="https://wa.me/27712345678">071&nbsp;234&nbsp;5678</a>.</li>
+                        <li>Collection is from the Victoria Road shop. Delivery in Grassy Park, Lotus River, Wetton, Ottery and Parkwood is R60.</li>
+                        <li>Prefer to chat? WhatsApp us on <a href="https://wa.me/27712345678" target="_blank" rel="noopener noreferrer">071&nbsp;234&nbsp;5678</a>.</li>
                     </ul>
                 </aside>
             </div>
@@ -178,6 +232,8 @@
                     <li>Sunday: 07:00 &#8211; 12:00</li>
                     <li>Market stall: Sat 08:00 &#8211; 13:00</li>
                 </ul>
+                <!-- Filled in by main.js with the live open/closed status -->
+                <p class="open-status" data-open-status hidden></p>
             </section>
             <section>
                 <h2>Quick links</h2>
@@ -189,7 +245,7 @@
             </section>
         </div>
         <p class="footer-note container">
-            &copy; 2026 Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
+            &copy; <span data-year>2026</span> Desai&#8217;s Bakery &#8211; Jadeed&#8217;s Bread. A fictional business created for a WEDE5020 student project by Waylon Pillay (ST10504504).
         </p>
     </footer>
 </body>
