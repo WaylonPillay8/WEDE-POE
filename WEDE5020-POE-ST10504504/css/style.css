@@ -1,6 +1,6 @@
 /* ==========================================================================
    Desai's Bakery – Jadeed's Bread | style.css
-   WEDE5020 POE Part 2 – Waylon Pillay (ST10504504)
+   WEDE5020 POE Parts 2 and 3 – Waylon Pillay (ST10504504)
 
    One external stylesheet, linked from all five pages.
    Structure:
@@ -16,6 +16,9 @@
     10. Forms
     11. Footer
     12. Responsive design: tablet (max 64em) and mobile (max 48em / 30em)
+    13. Part 3 – JavaScript components: open-now status, reveal animations,
+        back-to-top, today's bakes, menu finder, gallery + lightbox,
+        Leaflet maps, FAQ accordion, form errors and responses
 
    Styles are written for the desktop first, then media queries adjust
    the layout, type and navigation for smaller screens.
@@ -759,6 +762,7 @@ input[type="tel"],
 input[type="number"],
 input[type="date"],
 input[type="file"],
+input[type="search"],
 select,
 textarea {
     width: 100%;
@@ -1085,3 +1089,479 @@ input[type="radio"] {
         align-items: flex-start;
     }
 }
+
+
+/* ==========================================================================
+   13. PART 3 – JAVASCRIPT COMPONENTS
+   Styles for the features added with JavaScript in Part 3. They come after
+   the media queries, so each component keeps its own small responsive
+   rules at the end of this section.
+   ========================================================================== */
+
+/* The hidden attribute must always win, even over display: grid/flex */
+[hidden] {
+    display: none !important;
+}
+
+/* Stops the page scrolling behind the open lightbox */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* ---------- Open-now status (footer, every page) ---------- */
+.open-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: var(--space-xs);
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: var(--fs-small);
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+.open-status::before {
+    content: "";
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+.open-status.is-open { color: #9BE3A5; }
+.open-status.is-closed { color: #F5B7A8; }
+
+/* ---------- Scroll-reveal animation ---------- */
+.js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.js-reveal .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Back-to-top button ---------- */
+.back-to-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 50;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--terracotta-dark);
+    color: var(--white);
+    font-size: 1.4rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(1rem);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background-color 0.2s;
+}
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+.back-to-top:hover { background-color: var(--terracotta-deep); }
+.back-to-top:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* ---------- Today's bakes (home page, built by specials.js) ---------- */
+.todays-bakes {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+.todays-bakes h2 {
+    text-align: center;
+    margin-bottom: var(--space-sm);
+}
+.day-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: var(--space-md);
+}
+.day-tab {
+    min-width: 3.25rem;
+    padding: 0.45rem 0.8rem;
+    border: 2px solid var(--terracotta);
+    border-radius: 999px;
+    background-color: var(--white);
+    color: var(--brown);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+.day-tab:hover { transform: translateY(-2px); }
+.day-tab:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.day-tab.is-active {
+    background-color: var(--terracotta-dark);
+    border-color: var(--terracotta-dark);
+    color: var(--white);
+}
+.bake-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+.bake-item {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    border-top: 4px solid var(--terracotta);
+    padding: var(--space-md);
+    box-shadow: var(--shadow);
+    animation: fade-up 0.4s ease both;
+}
+.bake-item h3 { margin-bottom: 0.25rem; }
+.bake-item p { color: var(--brown-soft); }
+.bake-item .bake-price {
+    margin-top: var(--space-xs);
+    color: var(--terracotta-dark);
+    font-weight: 700;
+    font-size: var(--fs-h3);
+}
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(0.75rem); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Menu finder (menu page, menu.js) ---------- */
+.menu-finder {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: var(--space-sm);
+    align-items: end;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    box-shadow: var(--shadow);
+}
+.menu-finder .field { margin: 0; }
+.menu-finder input[type="search"] { width: 100%; }
+.menu-results {
+    margin-top: var(--space-sm);
+    font-weight: 700;
+    color: var(--brown-soft);
+}
+.menu-empty {
+    margin-top: var(--space-md);
+    text-align: center;
+}
+
+/* ---------- Gallery and lightbox (about page, gallery.js) ---------- */
+.gallery {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+}
+.gallery a {
+    display: block;
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+.gallery img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
+    transition: transform 0.4s ease;
+}
+.gallery a::after {
+    content: "\2922";               /* expand icon */
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background-color: rgba(74, 46, 32, 0.75);
+    color: var(--white);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.gallery a:hover img,
+.gallery a:focus-visible img { transform: scale(1.06); }
+.gallery a:hover::after,
+.gallery a:focus-visible::after { opacity: 1; }
+.gallery a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 4rem 4.5rem 3rem;
+    background-color: rgba(30, 18, 12, 0.92);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.lightbox.is-open { opacity: 1; }
+.lightbox-figure {
+    max-width: 60rem;
+    width: 100%;
+    text-align: center;
+}
+.lightbox-image {
+    max-height: 75vh;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.lightbox-image.is-loaded { opacity: 1; transform: none; }
+.lightbox-caption {
+    margin-top: var(--space-sm);
+    color: var(--cream);
+}
+.lightbox-counter {
+    position: absolute;
+    top: 1.1rem;
+    left: 1.25rem;
+    color: var(--cream);
+    font-size: var(--fs-small);
+}
+.lightbox-btn {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.lightbox-btn:hover { background-color: var(--terracotta-dark); }
+.lightbox-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.lightbox-close { top: 0.75rem; right: 0.75rem; }
+.lightbox-prev { left: 0.75rem; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 0.75rem; top: 50%; transform: translateY(-50%); }
+
+/* ---------- Leaflet maps (contact page, map.js) ---------- */
+.map-frame .leaflet-map {
+    width: 100%;
+    height: 100%;
+}
+.map-fallback {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    padding: var(--space-md);
+    text-align: center;
+    background-color: var(--cream-dark);
+}
+.map-pin {
+    background: none;
+    border: 0;
+}
+.map-pin span {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background-color: var(--terracotta-dark);
+    border: 3px solid var(--white);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    color: var(--white);
+    font-weight: 700;
+    font-family: var(--font-body);
+}
+.map-pin b {
+    transform: rotate(45deg);    /* keeps the letter upright inside the rotated pin */
+}
+.leaflet-popup-content p { margin: 0.25rem 0; }
+.leaflet-container a.btn { color: var(--white); }
+.map-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: var(--space-sm);
+}
+.btn-small {
+    padding: 0.4rem 0.9rem;
+    font-size: var(--fs-small);
+}
+
+/* ---------- FAQ accordion (contact page, accordion.js) ---------- */
+.accordion {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+.accordion-item {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: var(--space-xs);
+    overflow: hidden;
+}
+.accordion-item h3 { font-size: var(--fs-base); }
+.accordion-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 0;
+    background: none;
+    color: var(--brown);
+    font: inherit;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+}
+.accordion-trigger:hover { color: var(--terracotta-dark); }
+.accordion-trigger:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
+.accordion-trigger::after {
+    content: "+";
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+.accordion-trigger[aria-expanded="true"]::after { transform: rotate(45deg); }
+.accordion-panel p { padding: 0 var(--space-md) var(--space-sm); }
+.accordion.is-enhanced .accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+/* ---------- Form errors, counters and responses (validation.js etc.) ---------- */
+.field-hint {
+    font-size: var(--fs-small);
+    color: var(--brown-soft);
+    margin-top: 0.25rem;
+}
+.error-message {
+    margin-top: 0.3rem;
+    color: #B3261E;
+    font-size: var(--fs-small);
+    font-weight: 700;
+}
+.error-message:empty { display: none; }
+.has-error input,
+.has-error select,
+.has-error textarea {
+    border-color: #B3261E;
+    background-color: #FFF6F5;
+}
+.char-counter {
+    text-align: right;
+    font-size: var(--fs-small);
+    color: var(--brown-soft);
+    margin-top: 0.25rem;
+}
+.char-counter.is-over { color: #B3261E; font-weight: 700; }
+.form-summary {
+    padding: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    border-left: 4px solid #B3261E;
+    background-color: #FFF6F5;
+    color: #B3261E;
+    font-weight: 700;
+}
+.form-response {
+    animation: fade-up 0.4s ease both;
+}
+.form-response:focus { outline: none; }
+.form-response { scroll-margin-top: 6rem; }   /* clears the sticky header */
+.form-response > * + * { margin-top: var(--space-sm); }
+.response-ref {
+    font-weight: 700;
+    color: var(--terracotta-dark);
+}
+.quote-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.quote-table caption {
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+.quote-table th,
+.quote-table td {
+    padding: 0.5rem 0.25rem;
+    border-bottom: 1px solid var(--cream-dark);
+    text-align: left;
+    font-weight: 400;
+}
+.quote-table td { text-align: right; white-space: nowrap; }
+.quote-table .total-row th,
+.quote-table .total-row td { font-weight: 700; }
+.response-available {
+    font-weight: 700;
+    color: #2E6B34;
+}
+.response-send {
+    padding: var(--space-sm);
+    border-radius: var(--radius);
+    font-size: var(--fs-small);
+}
+.response-send.is-success { background-color: #E7F4E8; color: #2E6B34; }
+.response-send.is-info { background-color: var(--cream); color: var(--brown); }
+.response-send.is-error { background-color: #FFF6F5; color: #B3261E; }
+.email-preview {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    padding: var(--space-sm);
+    border-radius: var(--radius);
+    background-color: var(--cream);
+    font-size: var(--fs-small);
+    max-height: 20rem;
+    overflow: auto;
+}
+
+/* ---------- Part 3 responsive rules ---------- */
+@media (max-width: 64em) {
+    .gallery { grid-template-columns: repeat(3, 1fr); }
+    .menu-finder { grid-template-columns: 1fr 1fr; }
+    .menu-finder .finder-search { grid-column: 1 / -1; }
+}
+@media (max-width: 48em) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .bake-list { grid-template-columns: 1fr; }
+    .lightbox { padding: 3.75rem 0.75rem 4.5rem; }
+    .lightbox-prev,
+    .lightbox-next { top: auto; bottom: 0.75rem; transform: none; }
+}
+@media (max-width: 30em) {
+    .menu-finder { grid-template-columns: 1fr; }
+    .back-to-top { right: 0.75rem; bottom: 0.75rem; }
+}
+
+/* Turn off movement for visitors who ask for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Small extras for Part 3 layouts */
+.form-column { min-width: 0; }
+.finder-section { padding-bottom: 0; }
